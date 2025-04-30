@@ -50,6 +50,96 @@
     }
   ],
   "paths": {
+    "/workspaces": {
+      "get": {
+        "summary": "Get all workspaces",
+        "description": "Gets all [workspaces](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/creating-workspaces/). The response includes your workspaces and any workspaces that you have access to.\n\n**Note:**\n\nThis endpoint's response contains the visibility field. Visibility determines whsacascascascsacscascacascascsacasersonal` — Only you can access the workspace.\n- `team` — All team members can access the workspace.\n- `private` — Only invited team members can access the workspace ([**Professional** and **Enterprise** plans only](https://www.postman.com/pricing)).\n- `public` — Everyone can access the workspace.\n- `partner` — Only invited team members and [partners](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/partner-workspaces/) can access the workspace ([**Professional** and **Enterprise** plans only](https://www.postman.com/pricing)).\n",
+        "operationId": "getWorkspaces",
+        "tags": [
+          "Workspaces"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/getWorkspaces"
+          },
+          "401": {
+            "$ref": "#/components/responses/common401Error"
+          },
+          "500": {
+            "$ref": "#/components/responses/common500ErrorServerError"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/workspaceTypeQuery"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceCreatedBy"
+          },
+          {
+            "$ref": "#/components/parameters/workspaceIncludeQuery"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a workspace",
+        "description": "Creates a new [workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/creating-workspaces/).\n\n**Note:**\n\n- This endpoint returns a 403 `Forbidden` response if the user does not have permission to create workspaces. [Admins and Super Admins](https://learning.postman.com/docs/collaborating-in-postman/roles-and-permissions/#team-roles) can configure workspace permissions to restrict users and/or user groups from creating workspaces or require approvals for the creation of team workspaces.\n- There are rate limits when publishing public workspaces.\n- Public team workspace names must be unique.\n\n### Important\n\nWe deprecated linking collections or environments between workspaces. We do not recommend that you do this.\n\nIf you have a linked collection or environment, note the following:\n- The endpoint does not create a clone of a collection or environment.\n- Any changes you make to a linked collection or environment changes them in all workspaces.\n- If you delete a collection or environment linked between workspaces, the system deletes it in all the workspaces.\n",
+        "operationId": "createWorkspace",
+        "tags": [
+          "Workspaces"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/createWorkspace"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/createWorkspace"
+          },
+          "400": {
+            "$ref": "#/components/responses/workspacePostPut400Errors"
+          },
+          "401": {
+            "$ref": "#/components/responses/common401Error"
+          },
+          "403": {
+            "$ref": "#/components/responses/workspace403ErrorUnauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/common500ErrorServerError"
+          }
+        }
+      },
+      "put": {
+        "summary": "A short summary of what the operation does.",
+        "responses": {
+          "200": {
+            "description": "A short description of the response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "A short summary of what the operation does.",
+        "responses": {
+          "200": {
+            "description": "A short description of the response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/workspaces-roles": {
       "get": {
         "summary": "Get all roles",
