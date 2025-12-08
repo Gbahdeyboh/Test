@@ -19,7 +19,7 @@ jobs:
         run: |
           mkdir -p reports
           postman collection run "21505573-ce0ce6af-7e8a-4ccd-a48f-361ea8630da3" -e "21505573-e0092250-6b11-49cf-bf63-763ae64b0b13" \
-            --r cli,html \
+            -r cli,html \
             --reporter-html-export "reports/postman-report.html"
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
