@@ -5,10 +5,6 @@ on: push
 jobs:
   automated-api-tests:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
       
     steps:
       - uses: actions/checkout@v4
@@ -31,15 +27,3 @@ jobs:
         with:
           name: postman-html-report
           path: reports/postman-report.html
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload report for Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: reports   # folder containing postman-report.html
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
