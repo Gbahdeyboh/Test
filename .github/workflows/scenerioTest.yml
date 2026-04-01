@@ -5,7 +5,6 @@ on: push
 jobs:
   automated-api-tests:
     runs-on: ubuntu-latest
-      
     steps:
       - uses: actions/checkout@v4
       - name: Install Postman CLI
@@ -15,15 +14,4 @@ jobs:
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
       - name: Run API tests
         run: |
-          postman collection run "21505573-ce0ce6af-7e8a-4ccd-a48f-361ea8630da3" -e "21505573-e0092250-6b11-49cf-bf63-763ae64b0b13"
-      - name: Run Postman collection with CLI + HTML reporters
-        run: |
-          mkdir -p reports
-          postman collection run "21505573-ce0ce6af-7e8a-4ccd-a48f-361ea8630da3" -e "21505573-e0092250-6b11-49cf-bf63-763ae64b0b13" \
-            -r cli,html \
-            --reporter-html-export "reports/postman-report.html"
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: postman-html-report
-          path: reports/postman-report.html
+          postman collection run "21505573-e28f3f87-9e19-4d5a-94f1-707ce115ae85" -e "21505573-c7170875-2a02-4343-b469-ab342451db09"
